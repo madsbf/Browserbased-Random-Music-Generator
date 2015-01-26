@@ -1,0 +1,53 @@
+<html>
+<head>
+<script src="sylvester.js"></script>
+<script src="wavepot-runtime.js"></script>
+<script src="scales.js"></script>
+</head>
+<body>
+<p>
+<button id="play">PLAY</button>
+<button id="stop">STOP</button>
+<button id="reset">RESET</button>
+</p>
+<script>
+
+var rt = new WavepotRuntime();
+
+function compile_file(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        //console.log('readyState: ' + rawFile.readyState);
+		if(rawFile.readyState === 4)
+        {
+        	//console.log('status: ' + rawFile.status);
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                rt.compile(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
+compile_file('make_sound.js');
+
+document.getElementById('play').addEventListener('click', function() {
+	rt.play();
+});
+
+document.getElementById('stop').addEventListener('click', function() {
+	rt.stop();
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+	rt.reset();
+});
+
+</script>
+</body>
+</html>
