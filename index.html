@@ -1,8 +1,9 @@
 <html>
 <head>
-<script src="sylvester.js"></script>
-<script src="wavepot-runtime.js"></script>
-<script src="scales.js"></script>
+<script src="sylvester.js"></script>         <!-- Matrix manipulation -->
+<script src="wavepot-runtime.js"></script>   <!-- Wavepot -->
+<script src="scales.js"></script>            <!-- Predefined tone scales -->
+<script src="make_sound.js"></script>        <!-- Random music object -->
 </head>
 <body>
 <p>
@@ -12,41 +13,20 @@
 </p>
 <script>
 
-var rt = new WavepotRuntime();
+    var randomMusic = new RandomMusic();
+    var rt = new WavepotRuntime(randomMusic.dsp);
 
-function compile_file(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        //console.log('readyState: ' + rawFile.readyState);
-		if(rawFile.readyState === 4)
-        {
-        	//console.log('status: ' + rawFile.status);
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                rt.compile(allText);
-            }
-        }
-    }
-    rawFile.send(null);
-}
+    document.getElementById('play').addEventListener('click', function() {
+        rt.play();
+    });
 
-compile_file('make_sound.js');
+    document.getElementById('stop').addEventListener('click', function() {
+        rt.stop();
+    });
 
-document.getElementById('play').addEventListener('click', function() {
-	rt.play();
-});
-
-document.getElementById('stop').addEventListener('click', function() {
-	rt.stop();
-});
-
-document.getElementById('reset').addEventListener('click', function() {
-	rt.reset();
-});
+    document.getElementById('reset').addEventListener('click', function() {
+        rt.reset();
+    });
 
 </script>
 </body>

@@ -2,7 +2,7 @@
  *
  * Never gonna give you up - Rick Astley
  *
- * Code originally by Likeyn: https://gist.github.com/Likeyn/824f5b3e9278fa0c8745
+ * The song is originally by produced by Likeyn: https://gist.github.com/Likeyn/824f5b3e9278fa0c8745
  *
  * */
 
