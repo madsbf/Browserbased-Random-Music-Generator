@@ -2,17 +2,35 @@
  *
  * This code is greatly inspired from Likeyn (https://gist.github.com/Likeyn/824f5b3e9278fa0c8745)
  *
+ * Work in progress!!!
+ *
  */
 
-function RandomMusic() {
-    var bpm = random_between(60, 180);
-    console.log(bpm);
+//function WavepotCompositionLight() {
+//    this.bpm = 440;
+//
+//    this.dsp = function (t) {
+//        return 0.1 * Math.sin(2 * Math.PI * t * 440);
+//    };
+//    bum = function(param) {
+//        this.bmp = param;
+//    };
+//};
 
+function WavepotComposition() {
+
+    //this.randomize = function() {
+    //    this.bpm = random_between(60, 180);
+    //    console.log('bpm:');
+    //    console.log(this.bpm);
+    //};
+
+    var bpm = random_between(60, 180);
     var tuning = 440;
     var transpose = 12;
 
-    var scale_names = Object.keys(scales);
-    var scale_name = pick_random_element(scale_names);
+    var scale_names = Object.keys(scales); // external file
+    scale_name = pick_random_element(scale_names);
     console.log(scale_name);
     var scale = scales[scale_name];
 
@@ -22,7 +40,7 @@ function RandomMusic() {
 
 
     // Adjust tuning to bpm
-    tuning *= 60 / bpm;
+    this.tuning *= 60 / bpm;
 
     // Chords and notes
     var hat_note = note(7, 6);
@@ -118,7 +136,7 @@ function RandomMusic() {
     });
 
     this.dsp = function(t, f) {
-        t *= bpm / 120;
+        t *= bpm / 60;
 
         var noise = Noise();
 

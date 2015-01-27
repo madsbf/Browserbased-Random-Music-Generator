@@ -1,9 +1,9 @@
 <html>
 <head>
-<script src="sylvester.js"></script>         <!-- Matrix manipulation -->
-<script src="wavepot-runtime.js"></script>   <!-- Wavepot -->
-<script src="scales.js"></script>            <!-- Predefined tone scales -->
-<script src="make_sound.js"></script>        <!-- Random music object -->
+<script src="sylvester.js"></script>           <!-- Matrix manipulation                     -->
+<script src="wavepot-runtime.js"></script>     <!-- Wavepot runtime                         -->
+<script src="scales.js"></script>              <!-- Predefined tone scales                  -->
+<script src="wavepot-composition.js"></script> <!-- Object to represents a piece of music   -->
 </head>
 <body>
 <p>
@@ -13,8 +13,10 @@
 </p>
 <script>
 
-    var randomMusic = new RandomMusic();
-    var rt = new WavepotRuntime(randomMusic.dsp);
+    var composition = new WavepotComposition();
+//    composition.bum();
+//    composition.randomize();
+    var rt = new WavepotRuntime(composition.dsp);
 
     document.getElementById('play').addEventListener('click', function() {
         rt.play();
