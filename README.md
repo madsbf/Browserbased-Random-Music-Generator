@@ -6,7 +6,6 @@ Thanks to:
 I am going to completely rewrite the code, so that the WavepotComposition function can work as a class that can be used to create multiple composition objects. But I guess the random variables will still be kind of the same.
 
 Right now a composition is based on:
-
 * bmp (60-180)
 * scale (out of around 20 predefined once)
 * 4 chords:
