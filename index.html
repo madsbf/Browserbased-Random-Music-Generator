@@ -8,13 +8,13 @@
 <p>
 <button id="play">PLAY</button>
 <button id="stop">STOP</button>
-<button id="reset">RESET</button>
+<button id="change">CHANGE!</button>
+<p>Level of change (between 0 and 1):</p>
+<input id="variance" type="number" value="0.5"/>
 </p>
 <script>
 
     var composition = new WavepotComposition();
-//    composition.bum();
-//    composition.randomize();
     var rt = new WavepotRuntime(composition.dsp);
 
     document.getElementById('play').addEventListener('click', function() {
@@ -25,8 +25,10 @@
         rt.stop();
     });
 
-    document.getElementById('reset').addEventListener('click', function() {
-        rt.reset();
+    document.getElementById('change').addEventListener('click', function() {
+        var variance = parseFloat(document.getElementById('variance').value);
+        console.log(variance);
+        composition.randomize(variance);
     });
 
 </script>
