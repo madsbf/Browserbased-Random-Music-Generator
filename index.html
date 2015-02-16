@@ -1,36 +1,64 @@
 <html>
 <head>
-<script src="sylvester.js"></script>           <!-- Matrix manipulation                     -->
-<script src="wavepot-runtime.js"></script>     <!-- Wavepot runtime                         -->
-<script src="wavepot-composition.js"></script> <!-- Object to represents a piece of music   -->
+    <link rel="import" href="/bower_components/polymer/polymer.html">              <!-- UI Components                          -->
+    <link rel="import" href="/bower_components/paper-button/paper-button.html">    <!-- UI Component: Paper Button             -->
+    <link rel="import" href="/bower_components/paper-slider/paper-slider.html">    <!-- UI Component: Paper Slider             -->
+    <link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">    <!-- UI Component: Paper Dialog             -->
+    <link rel="import" href="/bower_components/paper-fab/paper-fab.html">          <!-- UI Component: FAB                      -->
+    <link href="/bower_components/core-icons/av-icons.html" rel="import">        <!-- UI Components: Icons                   -->
+    <link rel="stylesheet" href="styles.css">                               <!-- Stylesheet                             -->
+    <script src="sylvester.js"></script>                                    <!-- Matrix manipulation                    -->
+    <script src="wavepot-runtime.js"></script>                              <!-- Wavepot runtime                        -->
+    <script src="wavepot-composition.js"></script>                          <!-- Object to represents a piece of music  -->
 </head>
 <body>
-<p>
-<button id="play">PLAY</button>
-<button id="stop">STOP</button>
-<button id="change">CHANGE!</button>
-<p>Level of change (between 0 and 1):</p>
-<input id="variance" type="number" value="0.5"/>
-</p>
-<script>
+    <paper-dialog opened id="dialog">
+        <p class="header"><b>Hello!</b> Welcome to your new playground for music generation!</p>
 
-    var composition = new WavepotComposition();
-    var rt = new WavepotRuntime(composition.dsp);
+        <div class="middle">
+        <p>
+            <paper-button class="change" raised id="change">
+                <core-icon icon="av:shuffle"></core-icon>
+                CHANGE
+            </paper-button>
 
-    document.getElementById('play').addEventListener('click', function() {
-        rt.play();
-    });
+        <p class="center">Level of change</p>
 
-    document.getElementById('stop').addEventListener('click', function() {
-        rt.stop();
-    });
+        <p><paper-slider id="variance" min="0" max="100" value="50"></paper-slider></p>
+        
+        </div>
 
-    document.getElementById('change').addEventListener('click', function() {
-        var variance = parseFloat(document.getElementById('variance').value);
-        console.log(variance);
-        composition.randomize(variance);
-    });
+        <div class="bottom">
 
-</script>
+            <paper-fab icon="av:stop" class="stop" id="stop">
+            </paper-fab>
+
+            <paper-fab icon="av:play-arrow" class="play" id="play">
+            </paper-fab>
+
+        </div>
+        </p>
+    </paper-dialog>
+
+    <script>
+
+        var composition = new WavepotComposition();
+        var rt = new WavepotRuntime(composition.dsp);
+
+        document.getElementById('play').addEventListener('click', function () {
+            rt.play();
+        });
+
+        document.getElementById('stop').addEventListener('click', function () {
+            rt.stop();
+        });
+
+        document.getElementById('change').addEventListener('click', function () {
+            var variance = parseFloat(document.getElementById('variance').value);
+            console.log(variance);
+            composition.randomize(variance);
+        });
+
+    </script>
 </body>
 </html>

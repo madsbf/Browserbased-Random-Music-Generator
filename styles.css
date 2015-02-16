@@ -1,0 +1,67 @@
+﻿body {
+    font-family: Roboto;
+    background-image: url("http://st.gdefon.ru/wallpapers_original/wallpapers/435969_night-club_dj_black-man_di-dzhej_klub_nochnoj_4288x2848_(www.GdeFon.ru).jpg");
+    background-size: cover;
+}
+
+html /deep/ .stop {
+    float: right;
+    background: #F44336;
+    color: white;
+}
+
+html /deep/ .play {
+    float: right;
+    margin-right: 12px;
+    background: #4CAF50;
+    color: white;
+}
+
+html /deep/ .change {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background: #03A9F4;
+    color: white;
+}
+
+html /deep/ p.center {
+    margin-top: 36px;
+    text-align: center;
+    width: 100%;
+}
+
+html /deep/ div.middle {
+    background-color: #f1f1f1;
+    padding: 24px 24px 24px 24px;
+}
+
+html /deep/ div.bottom {
+    padding: 24px 24px 60px 48px;
+}
+
+html /deep/ p.header {
+    margin-bottom: 48px;
+    font-size: large;
+    text-align: center;
+    width: 100%;
+}
+
+html /deep/ paper-slider {
+    width: 100%;
+    margin-top:-12px;
+}
+
+html /deep/ paper-slider::shadow #sliderBar::shadow #activeProgress {
+  background-color: #03A9F4;
+}
+
+html /deep/ paper-slider::shadow #sliderKnobInner {
+  background-color: #03A9F4;
+}
+
+html /deep/ paper-dialog::shadow #scroller {
+    width: 600px;
+    background-color: #ffffff;
+    padding: 0px 0px 0px 0px;
+}
