@@ -1,36 +1,44 @@
 <html>
 <head>
-<script src="sylvester.js"></script>           <!-- Matrix manipulation                     -->
-<script src="wavepot-runtime.js"></script>     <!-- Wavepot runtime                         -->
-<script src="wavepot-composition.js"></script> <!-- Object to represents a piece of music   -->
+    <script src="sylvester.js"></script>           <!-- Matrix manipulation                     -->
+    <script src="wavepot-runtime.js"></script>     <!-- Wavepot runtime                         -->
+    <script src="wavepot-composition.js"></script> <!-- Object to represents a piece of music   -->
+    <script src="jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
 </head>
 <body>
-<p>
-<button id="play">PLAY</button>
-<button id="stop">STOP</button>
-<button id="change">CHANGE!</button>
-<p>Level of change (between 0 and 1):</p>
-<input id="variance" type="number" value="0.5"/>
-</p>
+<div class="container-fluid" id="container">
+
+</div>
+
+
 <script>
 
-    var composition = new WavepotComposition();
-    var rt = new WavepotRuntime(composition.dsp);
+    var make_new_songs = function() {
+        var row = $('#container').prepend('<row>');
+        var compositions = [];
+        var runtimes = [];
+        for (var i = 0; i < 5; i++) {
+            var button = row.append('<button>PLAY</button>');
+            compositions[i] = new WavepotComposition();
+            compositions[i].randomize(1);
+            runtimes[i] = new WavepotRuntime(compositions[i].dsp);
+            button.mouseover(function() {
+                runtimes[i].play();
+            });
+            button.mouseout(function() {
+                runtimes[i].stop();
+            });
+            button.click(function() {
+                make_new_songs();
+            });
+        }
+    }
 
-    document.getElementById('play').addEventListener('click', function() {
-        rt.play();
-    });
-
-    document.getElementById('stop').addEventListener('click', function() {
-        rt.stop();
-    });
-
-    document.getElementById('change').addEventListener('click', function() {
-        var variance = parseFloat(document.getElementById('variance').value);
-        console.log(variance);
-        composition.randomize(variance);
-    });
+    make_new_songs();
 
 </script>
+
+
 </body>
 </html>
