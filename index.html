@@ -13,7 +13,7 @@
 </head>
 <body>
     <paper-dialog opened id="dialog">
-        <p class="header"><b>Hello!</b> Welcome to your new playground for music generation!</p>
+        <p class="header"><b>Hello!</b> Welcome to <b>Genetic Algorithm DJ</b> - your new playground for music generation!</p>
 
         <div class="middle">
         <p>
@@ -54,9 +54,8 @@
         });
 
         document.getElementById('change').addEventListener('click', function () {
-            var variance = parseFloat(document.getElementById('variance').value);
-            console.log(variance);
-            composition.randomize(variance);
+            console.log(0.5);
+            composition.randomize(0.5);
         });
 
     </script>
